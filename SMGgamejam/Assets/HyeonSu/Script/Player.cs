@@ -19,12 +19,22 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Floor")
+        switch(collision.gameObject.tag)
         {
-            JumpLimit = false;
+            case "Floor":
+                JumpLimit = false;
+                break;
         }
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case "DropJudgment":
+                GameManager.Instance.GameOver();
+                break;
+        }
+    }
     void Move()
     {
         if(MoveKey == false && Input.GetKeyDown(KeyCode.F))
