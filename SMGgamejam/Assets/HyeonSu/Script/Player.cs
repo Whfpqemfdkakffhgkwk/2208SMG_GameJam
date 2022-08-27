@@ -1,26 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Player : MonoBehaviour
+using UnityEngine.UI;
+public class Player : Singleton<Player>
 {
+    #region 이동관련
     private bool MoveKey; //F - false, J - True
     private bool JumpLimit;
+    public int moveSpeed = 80;
+    #endregion
+    #region 상자깡관련
+    private bool unboxing;
+    private bool unboxingKey;
+    private int unboxingProgress;
+    public int unboxingProgressSpeed = 2;
+    #endregion
+
+    [SerializeField] Slider UnboxingProgressSlider;
     Rigidbody2D Rb;
+    GameObject CollisionObj;
     private void Awake()
     {
-        //PlayerPrefs.SetFloat("BestRecord", 130); �ְ��� �ʱ�ȭ �Դϴ�
+        //PlayerPrefs.SetFloat("BestRecord", 130); 
         Rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
+        UnboxingProgressSlider.value = unboxingProgress;
+        if(unboxingProgress >= 80)
+        {
+            Destroy(CollisionObj);
+            UnboxingProgressSlider.gameObject.SetActive(false);
+            unboxing = false;
+        }
         Jump();
-        Move();
+        if (!unboxing)
+            Move();
+        else
+            Unboxing();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch(collision.gameObject.tag)
+        switch (collision.gameObject.tag)
         {
             case "Floor":
                 JumpLimit = false;
@@ -37,31 +59,53 @@ public class Player : MonoBehaviour
             case "Goal":
                 GameManager.Instance.GameClear();
                 break;
+            case "Item":
+                break;
+            case "Box":
+                unboxingProgress = 0;
+                unboxing = true;
+                UnboxingProgressSlider.gameObject.SetActive(true);
+                CollisionObj = collision.gameObject;
+                break;
+
         }
     }
     void Move()
     {
-        if(MoveKey == false && Input.GetKeyDown(KeyCode.F))
+        if (MoveKey == false && Input.GetKeyDown(KeyCode.F))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
-            Rb.AddForce(Vector2.right * 80);
+            Rb.AddForce(Vector2.right * moveSpeed);
             MoveKey = true;
             SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
         }
-        else if(MoveKey == true && Input.GetKeyDown(KeyCode.J))
+        else if (MoveKey == true && Input.GetKeyDown(KeyCode.J))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
-            Rb.AddForce(Vector2.right * 80);
+            Rb.AddForce(Vector2.right * moveSpeed);
             MoveKey = false;
             SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
         }
     }
     void Jump()
     {
-        if(!JumpLimit && Input.GetKeyDown(KeyCode.Space))
+        if (!JumpLimit && Input.GetKeyDown(KeyCode.Space))
         {
             JumpLimit = true;
             Rb.AddForce(Vector2.up * 400);
+        }
+    }
+    void Unboxing()
+    {
+        if (unboxingKey == false && Input.GetKeyDown(KeyCode.F))
+        {
+            unboxingProgress += unboxingProgressSpeed;
+            unboxingKey = true;
+        }
+        else if (unboxingKey == true && Input.GetKeyDown(KeyCode.J))
+        {
+            unboxingProgress += unboxingProgressSpeed;
+            unboxingKey = false;
         }
     }
 }
