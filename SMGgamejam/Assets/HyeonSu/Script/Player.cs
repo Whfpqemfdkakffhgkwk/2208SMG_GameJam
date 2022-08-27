@@ -111,7 +111,7 @@ public class Player : MonoBehaviour
         if (unboxingProgress >= 80 && unboxing)
         {
             Destroy(CollisionObj);
-            Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 3), transform.rotation);
+            Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 1), transform.rotation);
             UnboxingProgressSlider.gameObject.SetActive(false);
             SoundManager.Instance.PlayBoxOpened();
             unboxing = false;
