@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     Rigidbody2D Rb;
     private void Awake()
     {
+        //PlayerPrefs.SetFloat("BestRecord", 130); 최고기록 초기화 입니다
         Rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -33,6 +34,9 @@ public class Player : MonoBehaviour
             case "DropJudgment":
                 GameManager.Instance.GameOver();
                 break;
+            case "Goal":
+                GameManager.Instance.GameClear();
+                break;
         }
     }
     void Move()
@@ -40,13 +44,13 @@ public class Player : MonoBehaviour
         if(MoveKey == false && Input.GetKeyDown(KeyCode.F))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
-            Rb.AddForce(Vector2.right * 100);
+            Rb.AddForce(Vector2.right * 80);
             MoveKey = true;
         }
         else if(MoveKey == true && Input.GetKeyDown(KeyCode.J))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
-            Rb.AddForce(Vector2.right * 100);
+            Rb.AddForce(Vector2.right * 80);
             MoveKey = false;
         }
     }
