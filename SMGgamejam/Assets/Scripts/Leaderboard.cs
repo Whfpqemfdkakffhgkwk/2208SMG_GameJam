@@ -13,7 +13,7 @@ public class Leaderboard : MonoBehaviour
         while (Application.isPlaying)
         {
             text.text = OnlineScore.Instance.CachedLeaderboardStr;
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
         }
     }
 }

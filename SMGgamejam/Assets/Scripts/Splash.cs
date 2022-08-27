@@ -44,6 +44,7 @@ public class Splash : MonoBehaviour
     void Start()
     {
         RefreshNickname(false);
+        nicknameText.text = RefreshNickname(false);
 
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
@@ -57,7 +58,7 @@ public class Splash : MonoBehaviour
         ready = true;
     }
 
-    public void RefreshNickname(bool force)
+    public static string RefreshNickname(bool force)
     {
         if (force)
         {
@@ -71,10 +72,10 @@ public class Splash : MonoBehaviour
         var nickname = PlayerPrefs.GetString("Nickname");
 
         Debug.Log($"Nickname: {nickname}");
-
-        nicknameText.text = nickname;
         
         PlayerPrefs.Save();
+
+        return nickname;
     }
 
     public void StartGame()
