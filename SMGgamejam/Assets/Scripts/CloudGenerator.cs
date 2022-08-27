@@ -12,12 +12,14 @@ public class CloudGenerator : MonoBehaviour
             var go = new GameObject("Cloud", typeof(RectTransform));
             go.transform.SetParent(transform, false);
             go.AddComponent<Image>();
-            go.AddComponent<Cloud>();
+            var cloud = go.AddComponent<Cloud>();
+            cloud.speed = Random.Range(90, 120);
             var goRt = go.GetComponent<RectTransform>();
             goRt.sizeDelta = new Vector2(Random.Range(100, 300), Random.Range(100, 200));
             var p = goRt.anchoredPosition;
             p.y = Random.Range(-100, 100);
             goRt.anchoredPosition = p;
+            
             
             yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
         }
