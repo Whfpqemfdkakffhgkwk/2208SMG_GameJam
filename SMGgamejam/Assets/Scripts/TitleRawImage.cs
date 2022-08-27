@@ -9,7 +9,7 @@ public class TitleRawImage : MonoBehaviour
     void Update()
     {
         var rawImageUVRect = rawImage.uvRect;
-        rawImageUVRect.x = Time.time / 2;
+        rawImageUVRect.x += Time.deltaTime / 10;
         rawImage.uvRect = rawImageUVRect;
     }
 }
