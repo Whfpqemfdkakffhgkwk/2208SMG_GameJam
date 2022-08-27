@@ -1788,6 +1788,7 @@ MonoBehaviour:
   bgmSlider: {fileID: 1036093215}
   sfxSlider: {fileID: 664927559}
   bgmSource: {fileID: 1877575407}
+  soundManager: {fileID: 4999389588566811710}
 --- !u!4 &823990660
 Transform:
   m_ObjectHideFlags: 0
