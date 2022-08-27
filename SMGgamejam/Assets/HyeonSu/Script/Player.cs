@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
             Unboxing();
         }
         ItemDurationSlider.gameObject.SetActive(itemCheck);
-        ItemDurationSlider.transform.position = new Vector2(ItemDurationSlider.transform.position.x, (transform.localPosition.y * 100) + 1000);
+        ItemDurationSlider.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(-1.6f, 4.3f, 0));
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -103,8 +103,10 @@ public class Player : MonoBehaviour
                 break;
             case "Item":
                 ItemDurationSlider.GetComponent<ItemSlider>().currentTime = 0;
-                GameManager.Instance.StopAllCoroutines();
+
+
                 ResetPlayerStats();
+                itemCheck = true;
                 ItemEffect(collision.gameObject.GetComponent<Item>().ItemCase);
                 Destroy(collision.gameObject);
                 break;

@@ -98,7 +98,6 @@ public class GameManager : Singleton<GameManager>
         Player.Instance.moveSpeed = 130;
         #region 동일내용
         ItemDuration = 10;
-        player.itemCheck = true;
         #endregion
         yield return new WaitForSeconds(10);
         #region 동일내용
@@ -112,10 +111,10 @@ public class GameManager : Singleton<GameManager>
         Player.Instance.moveSpeed = 80;
         #region 동일내용
         ItemDuration = 10;
-        player.itemCheck = true;
         #endregion
         yield return new WaitForSeconds(10);
         #region 동일내용
+        Debug.Log("왜 그러는거야");
         player.itemCheck = false;
         #endregion
         Player.Instance.moveSpeed = 100;
@@ -126,7 +125,6 @@ public class GameManager : Singleton<GameManager>
         Player.Instance.unboxingProgressSpeed = 3;
         #region 동일내용
         ItemDuration = 15;
-        player.itemCheck = true;
         #endregion
         yield return new WaitForSeconds(15);
         #region 동일내용
@@ -140,7 +138,6 @@ public class GameManager : Singleton<GameManager>
         Player.Instance.unboxingProgressSpeed = 1;
         #region 동일내용
         ItemDuration = 15;
-        player.itemCheck = true;
         #endregion
         yield return new WaitForSeconds(15);
         #region 동일내용
@@ -156,7 +153,6 @@ public class GameManager : Singleton<GameManager>
         player.Boost = true;
         SoundManager.Instance.PlayBoost();
         ItemDuration = 1.5f;
-        player.itemCheck = true;
         yield return new WaitForSeconds(1.5f);
         player.itemCheck = false;
         player.Boost = false;
