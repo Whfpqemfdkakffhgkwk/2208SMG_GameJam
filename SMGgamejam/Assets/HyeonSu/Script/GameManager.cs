@@ -17,7 +17,11 @@ public class GameManager : Singleton<GameManager>
 
     void TimeProgress()
     {
-        TimeText.text = System.Math.Truncate(currentTime) + " / 120";
+        if (TimeText != null)
+        {
+            TimeText.text = System.Math.Truncate(currentTime) + " / 120";
+        }
+
         currentTime += Time.deltaTime;
         
         if(currentTime >= timeLimit)
