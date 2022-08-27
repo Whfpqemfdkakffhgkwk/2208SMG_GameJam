@@ -50,4 +50,5 @@ MonoBehaviour:
   goalIn: {fileID: 8300000, guid: 3f0707a06c9624bf7af7123768212da9, type: 3}
   gameOver: {fileID: 8300000, guid: 730fba29b7b4449bf8884c1546ccdd01, type: 3}
   landmass: {fileID: 8300000, guid: e697517b010c541fbab977774e16a31f, type: 3}
+  boost: {fileID: 8300000, guid: 4be1e4125c95c4bd29f6d3b95802ca6c, type: 3}
   sfxSource: {fileID: 0}

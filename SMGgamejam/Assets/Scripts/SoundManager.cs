@@ -23,6 +23,9 @@ public class SoundManager : MonoBehaviour
     AudioClip landmass;
 
     [SerializeField]
+    AudioClip boost;
+
+    [SerializeField]
     AudioSource sfxSource;
 
     void Awake()
@@ -47,4 +50,7 @@ public class SoundManager : MonoBehaviour
     
     // Splash에서 게임 시작 눌렀을 때 효과음
     public void PlayLandmass() => sfxSource.PlayOneShot(landmass);
+    
+    // 부스트 시작 시
+    public void PlayBoost() => sfxSource.PlayOneShot(boost);
 }
