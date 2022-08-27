@@ -114,7 +114,6 @@ public class GameManager : Singleton<GameManager>
         #endregion
         yield return new WaitForSeconds(10);
         #region 동일내용
-        Debug.Log("왜 그러는거야");
         player.itemCheck = false;
         #endregion
         Player.Instance.moveSpeed = 100;

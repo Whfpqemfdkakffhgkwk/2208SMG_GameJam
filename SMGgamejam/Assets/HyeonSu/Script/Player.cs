@@ -47,7 +47,7 @@ public class Player : MonoBehaviour
 
     Rigidbody2D Rb;
     GameObject CollisionObj;
-
+    Coroutine coroutine;
     private void Awake()
     {
         Instance = this;
@@ -103,8 +103,8 @@ public class Player : MonoBehaviour
                 break;
             case "Item":
                 ItemDurationSlider.GetComponent<ItemSlider>().currentTime = 0;
-
-
+                if (coroutine != null)
+                    StopCoroutine(coroutine);
                 ResetPlayerStats();
                 itemCheck = true;
                 ItemEffect(collision.gameObject.GetComponent<Item>().ItemCase);
@@ -193,27 +193,27 @@ public class Player : MonoBehaviour
         switch (ItemCase)
         {
             case 1:
-                StartCoroutine(GameManager.Instance.SpeedUp());
+                coroutine = StartCoroutine(GameManager.Instance.SpeedUp());
                 SoundManager.Instance.PlayBuff();
                 Debug.Log(ItemCase);
                 break;
             case 2:
-                StartCoroutine(GameManager.Instance.SpeedDown());
+                coroutine = StartCoroutine(GameManager.Instance.SpeedDown());
                 SoundManager.Instance.PlayDebuff();
                 Debug.Log(ItemCase);
                 break;
             case 3:
-                StartCoroutine(GameManager.Instance.UnboxingSpeedUp());
+                coroutine = StartCoroutine(GameManager.Instance.UnboxingSpeedUp());
                 SoundManager.Instance.PlayBuff();
                 Debug.Log(ItemCase);
                 break;
             case 4:
-                StartCoroutine(GameManager.Instance.UnboxingSpeedDown());
+                coroutine = StartCoroutine(GameManager.Instance.UnboxingSpeedDown());
                 SoundManager.Instance.PlayDebuff();
                 Debug.Log(ItemCase);
                 break;
             case 5:
-                StartCoroutine(GameManager.Instance.BoostOn());
+                coroutine = StartCoroutine(GameManager.Instance.BoostOn());
                 SoundManager.Instance.PlayBuff();
                 Debug.Log(ItemCase);
                 break;
