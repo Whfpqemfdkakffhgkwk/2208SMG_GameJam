@@ -39,7 +39,13 @@ public class Splash : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        ConfirmPopup.Instance.Open("정말로 종료하시겠습니까?", () =>
+        {
+            Application.Quit();    
+        }, () =>
+        {
+            ConfirmPopup.Instance.Close();
+        });
     }
 
     public void OnBgmSliderChange(float v)
