@@ -13,11 +13,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         if (Instance == null)
         {
             Instance = t;
-            DontDestroyOnLoad(t.gameObject);
-        }
-        else if (Instance != t)
-        {
-            Destroy(t.gameObject);
         }
     }
 }

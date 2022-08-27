@@ -24,7 +24,7 @@ public class DummyPlayer : MonoBehaviour
         {
             Destroy(gameObject);
             
-            SceneManager.LoadScene("HyeonTest");
+            SceneManager.LoadScene("Main");
         }
     }
 }

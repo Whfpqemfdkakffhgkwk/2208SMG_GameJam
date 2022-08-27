@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class GameClear : MonoBehaviour
+public class GameWin : MonoBehaviour
 {
     [SerializeField] Text ClearText;
     [SerializeField] Text HighText;
@@ -19,7 +19,13 @@ public class GameClear : MonoBehaviour
             HighScore.SetActive(true);
         }
 
-        ClearText.text = "Game Clear Time : " + gameClearTime.ToString();
-        HighText.text = "High Time : " + PlayerPrefs.GetFloat("BestRecord");
+        ClearText.text = gameClearTime.ToString();
+        HighText.text = PlayerPrefs.GetFloat("BestRecord").ToString();
+    }
+
+    public void Next()
+    {
+        gameObject.SetActive(false);
+        GameManager.Instance.GameEnd(true);
     }
 }

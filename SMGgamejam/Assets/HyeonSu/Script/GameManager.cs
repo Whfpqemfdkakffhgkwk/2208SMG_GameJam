@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] Text TimeText;
     [SerializeField] GameObject ClearWindow;
     [SerializeField] GameObject UIObj;
+    [SerializeField] GameObject ClearScene;
+    [SerializeField] GameObject OverScene;
 
     float timeLimit = 120;
     public float currentTime;
@@ -34,17 +37,32 @@ public class GameManager : Singleton<GameManager>
     }
     public void GameOver()
     {
+        GameEnd(false);
         Time.timeScale = 0;
-        Debug.Log("���ӿ��� �̿ϼ�");
     }
     public void GameClear()
     {
         Instantiate(ClearWindow, UIObj.transform);
         Time.timeScale = 0;
     }
-
-
-
+    //클리어 true, 오버 false
+    public void GameEnd(bool Clear)
+    {
+        if (Clear)
+            ClearScene.SetActive(true);
+        else
+             OverScene.SetActive(true);
+    }
+    public void Retry()
+    {
+        SceneManager.LoadScene("Main");
+        Time.timeScale = 1;
+    }
+    public void GoMain()
+    {
+        SceneManager.LoadScene("Splash");
+        Time.timeScale = 1;
+    }
 
     public IEnumerator SpeedUp()
     {
