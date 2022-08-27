@@ -21,8 +21,10 @@ public class Player : MonoBehaviour
     private int unboxingProgress;
     public int unboxingProgressSpeed = 2;
     #endregion
-    bool boost;
 
+    public bool itemCheck;
+
+    bool boost;
     public bool Boost
     {
         get => boost;
@@ -34,6 +36,7 @@ public class Player : MonoBehaviour
     }
 
     [SerializeField] Slider UnboxingProgressSlider;
+    [SerializeField] Slider ItemDurationSlider;
     [SerializeField] GameObject Item;
 
     [SerializeField]
@@ -41,7 +44,7 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     GameObject trail;
-    
+
     Rigidbody2D Rb;
     GameObject CollisionObj;
 
@@ -55,11 +58,11 @@ public class Player : MonoBehaviour
     {
         var bgmVol = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
         mixer.SetFloat("BGMVolume", Mathf.Log10(bgmVol) * 20);
-        
+
         var sfxVol = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
-        mixer.SetFloat("SFXVolume", Mathf.Log10(sfxVol) * 20);    
+        mixer.SetFloat("SFXVolume", Mathf.Log10(sfxVol) * 20);
     }
-    
+
     private void Update()
     {
         if (UnboxingProgressSlider != null)
@@ -75,6 +78,8 @@ public class Player : MonoBehaviour
         {
             Unboxing();
         }
+        ItemDurationSlider.gameObject.SetActive(itemCheck);
+        ItemDurationSlider.transform.position = new Vector2(ItemDurationSlider.transform.position.x, (transform.localPosition.y * 100) + 1000);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -97,6 +102,9 @@ public class Player : MonoBehaviour
                 GameManager.Instance.GameClear();
                 break;
             case "Item":
+                ItemDurationSlider.GetComponent<ItemSlider>().currentTime = 0;
+                GameManager.Instance.StopAllCoroutines();
+                ResetPlayerStats();
                 ItemEffect(collision.gameObject.GetComponent<Item>().ItemCase);
                 Destroy(collision.gameObject);
                 break;
@@ -208,5 +216,10 @@ public class Player : MonoBehaviour
                 Debug.Log(ItemCase);
                 break;
         }
+    }
+    void ResetPlayerStats()
+    {
+        moveSpeed = 100;
+        unboxingProgressSpeed = 2;
     }
 }

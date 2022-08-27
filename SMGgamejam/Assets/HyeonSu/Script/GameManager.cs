@@ -24,9 +24,12 @@ public class GameManager : Singleton<GameManager>
 
     float timeLimit = 120;
     public float currentTime;
+    public float ItemDuration;
 
+    Player player;
     private void Start()
     {
+        player = Player.Instance;
         if (PlayerPrefs.GetInt("FirstStart") != 1)
         {
             PlayerPrefs.SetInt("FirstStart", 1);
@@ -93,28 +96,56 @@ public class GameManager : Singleton<GameManager>
     public IEnumerator SpeedUp()
     {
         Player.Instance.moveSpeed = 130;
+        #region 동일내용
+        ItemDuration = 10;
+        player.itemCheck = true;
+        #endregion
         yield return new WaitForSeconds(10);
+        #region 동일내용
+        player.itemCheck = false;
+        #endregion
         Player.Instance.moveSpeed = 100;
     }
 
     public IEnumerator SpeedDown()
     {
         Player.Instance.moveSpeed = 80;
+        #region 동일내용
+        ItemDuration = 10;
+        player.itemCheck = true;
+        #endregion
         yield return new WaitForSeconds(10);
+        #region 동일내용
+        player.itemCheck = false;
+        #endregion
         Player.Instance.moveSpeed = 100;
     }
 
     public IEnumerator UnboxingSpeedUp()
     {
         Player.Instance.unboxingProgressSpeed = 3;
+        #region 동일내용
+        ItemDuration = 15;
+        player.itemCheck = true;
+        #endregion
         yield return new WaitForSeconds(15);
+        #region 동일내용
+        player.itemCheck = false;
+        #endregion
         Player.Instance.unboxingProgressSpeed = 2;
     }
 
     public IEnumerator UnboxingSpeedDown()
     {
         Player.Instance.unboxingProgressSpeed = 1;
+        #region 동일내용
+        ItemDuration = 15;
+        player.itemCheck = true;
+        #endregion
         yield return new WaitForSeconds(15);
+        #region 동일내용
+        player.itemCheck = false;
+        #endregion
         Player.Instance.unboxingProgressSpeed = 2;
     }
 
@@ -124,7 +155,10 @@ public class GameManager : Singleton<GameManager>
         player.transform.DOMoveX(player.transform.position.x + 20, 1.5f).SetEase(Ease.Linear);
         player.Boost = true;
         SoundManager.Instance.PlayBoost();
+        ItemDuration = 1.5f;
+        player.itemCheck = true;
         yield return new WaitForSeconds(1.5f);
+        player.itemCheck = false;
         player.Boost = false;
         Debug.Log("Off");
     }
