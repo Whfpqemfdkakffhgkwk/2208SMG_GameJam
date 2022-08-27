@@ -15,6 +15,14 @@ public class GameManager : Singleton<GameManager>
 
     float timeLimit = 120;
     public float currentTime;
+    private void Start()
+    {
+        if(PlayerPrefs.GetInt("FirstStart") != 1)
+        {
+            PlayerPrefs.SetInt("FirstStart", 1);
+            PlayerPrefs.SetFloat("BestRecord", 100000);
+        }
+    }
     private void Update()
     {
         TimeProgress();

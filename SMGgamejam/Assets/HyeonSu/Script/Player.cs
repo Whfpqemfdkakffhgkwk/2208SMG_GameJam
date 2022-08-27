@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
     GameObject CollisionObj;
     private void Awake()
     {
-        //PlayerPrefs.SetFloat("BestRecord", 130); 
         Instance = this;
         Rb = GetComponent<Rigidbody2D>();
     }
