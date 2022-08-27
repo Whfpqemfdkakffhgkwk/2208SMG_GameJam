@@ -10,7 +10,7 @@ public class Player : MonoBehaviour
     #region 이동관련
     private bool MoveKey; //F - false, J - True
     private bool JumpLimit;
-    public int moveSpeed = 80;
+    public int moveSpeed = 100;
     #endregion
     #region 상자깡관련
     private bool unboxing;

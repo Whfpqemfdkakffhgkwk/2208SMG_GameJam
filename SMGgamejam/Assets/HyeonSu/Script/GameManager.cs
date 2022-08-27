@@ -47,27 +47,27 @@ public class GameManager : Singleton<GameManager>
 
     public IEnumerator SpeedUp()
     {
-        Player.Instance.moveSpeed = 120;
+        Player.Instance.moveSpeed = 130;
         yield return new WaitForSeconds(10);
-        Player.Instance.moveSpeed = 80;
+        Player.Instance.moveSpeed = 100;
     }
     public IEnumerator SpeedDown()
     {
-        Player.Instance.moveSpeed = 30;
-        yield return new WaitForSeconds(10);
         Player.Instance.moveSpeed = 80;
+        yield return new WaitForSeconds(10);
+        Player.Instance.moveSpeed = 100;
     }
     public IEnumerator UnboxingSpeedUp()
     {
         Player.Instance.unboxingProgressSpeed = 3;
         yield return new WaitForSeconds(15);
-        Player.Instance.moveSpeed = 2;
+        Player.Instance.unboxingProgressSpeed = 2;
     }
     public IEnumerator UnboxingSpeedDown()
     {
         Player.Instance.unboxingProgressSpeed = 1;
         yield return new WaitForSeconds(15);
-        Player.Instance.moveSpeed = 2;
+        Player.Instance.unboxingProgressSpeed = 2;
     }
 
     public IEnumerator BoostOn()
