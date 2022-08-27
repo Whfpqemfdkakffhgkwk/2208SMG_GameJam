@@ -26,6 +26,12 @@ public class Splash : MonoBehaviour
     [SerializeField]
     Transform dummyParent;
 
+    [SerializeField]
+    DummyPlayerGenerator dummyPlayerGenerator;
+
+    [SerializeField]
+    GraphicRaycaster graphicRaycaster;
+
     bool ready;
 
     void Start()
@@ -40,7 +46,8 @@ public class Splash : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("HyeonTest");
+        graphicRaycaster.enabled = false;
+        dummyPlayerGenerator.EnableGroup();
     }
 
     public void QuitGame()
