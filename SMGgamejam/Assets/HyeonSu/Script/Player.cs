@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     Rigidbody2D Rb;
     private void Awake()
     {
-        //PlayerPrefs.SetFloat("BestRecord", 130); ÃÖ°í±â·Ï ÃÊ±âÈ­ ÀÔ´Ï´Ù
+        //PlayerPrefs.SetFloat("BestRecord", 130); ï¿½Ö°ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­ ï¿½Ô´Ï´ï¿½
         Rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
@@ -46,14 +46,14 @@ public class Player : MonoBehaviour
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
             Rb.AddForce(Vector2.right * 80);
             MoveKey = true;
-            SendMessage("Flip");
+            SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
         }
         else if(MoveKey == true && Input.GetKeyDown(KeyCode.J))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
             Rb.AddForce(Vector2.right * 80);
             MoveKey = false;
-            SendMessage("Flip");
+            SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
         }
     }
     void Jump()
