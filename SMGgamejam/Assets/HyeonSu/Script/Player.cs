@@ -1,8 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Audio;
+
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; set; }
@@ -22,13 +25,28 @@ public class Player : MonoBehaviour
 
     [SerializeField] Slider UnboxingProgressSlider;
     [SerializeField] GameObject Item;
+
+    [SerializeField]
+    AudioMixer mixer;
+    
     Rigidbody2D Rb;
     GameObject CollisionObj;
+
     private void Awake()
     {
         Instance = this;
         Rb = GetComponent<Rigidbody2D>();
     }
+
+    void Start()
+    {
+        var bgmVol = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
+        mixer.SetFloat("BGMVolume", Mathf.Log10(bgmVol) * 20);
+        
+        var sfxVol = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
+        mixer.SetFloat("SFXVolume", Mathf.Log10(sfxVol) * 20);    
+    }
+    
     private void Update()
     {
         if (UnboxingProgressSlider != null)
@@ -41,7 +59,9 @@ public class Player : MonoBehaviour
             Jump();
         }
         else
+        {
             Unboxing();
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -93,6 +113,7 @@ public class Player : MonoBehaviour
             Destroy(CollisionObj);
             Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 3), transform.rotation);
             UnboxingProgressSlider.gameObject.SetActive(false);
+            SoundManager.Instance.PlayBoxOpened();
             unboxing = false;
         }
     }
@@ -127,11 +148,13 @@ public class Player : MonoBehaviour
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = true;
+            SoundManager.Instance.PlayBoxOpening();
         }
         else if (unboxingKey == true && Input.GetKeyDown(KeyCode.J))
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = false;
+            SoundManager.Instance.PlayBoxOpening();
         }
     }
     public void ItemEffect(int ItemCase)

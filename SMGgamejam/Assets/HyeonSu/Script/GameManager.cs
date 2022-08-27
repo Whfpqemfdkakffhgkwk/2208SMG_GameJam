@@ -47,11 +47,13 @@ public class GameManager : Singleton<GameManager>
     {
         GameEnd(false);
         Time.timeScale = 0;
+        SoundManager.Instance.PlayGameOver();
     }
     public void GameClear()
     {
         Instantiate(ClearWindow, UIObj.transform);
         Time.timeScale = 0;
+        SoundManager.Instance.PlayGoalIn();
     }
     //클리어 true, 오버 false
     public void GameEnd(bool Clear)

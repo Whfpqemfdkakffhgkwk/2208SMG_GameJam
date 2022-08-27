@@ -41,6 +41,10 @@ public class Splash : MonoBehaviour
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
+        // 원래 값과 똑같을 수 있으므로 강제 콜백 호출 보장
+        OnBgmSliderChange(bgmSlider.value);
+        OnSfxSliderChange(sfxSlider.value);
+
         bgmSource.PlayDelayed(0.5f);
 
         ready = true;
