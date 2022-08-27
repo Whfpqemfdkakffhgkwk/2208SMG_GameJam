@@ -10,7 +10,7 @@ public class MapManager : MonoBehaviour
     {
         public GameObject[] HoleNum = new GameObject[3];
     }
-    public HoleList[] HoleSection = new HoleList[4];
+    public HoleList[] HoleSection = new HoleList[8];
     #endregion
     #region ป๓ภฺต้
     [System.Serializable]
@@ -18,7 +18,7 @@ public class MapManager : MonoBehaviour
     {
         public GameObject[] BoxNum = new GameObject[3];
     }
-    public BoxList[] BoxSection = new BoxList[3];
+    public BoxList[] BoxSection = new BoxList[6];
     #endregion
     private void Start()
     {
