@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
-    public static Player Instance { get; set; }  
+    public static Player Instance { get; set; }
 
     #region 이동관련
     private bool MoveKey; //F - false, J - True
@@ -31,12 +31,15 @@ public class Player : MonoBehaviour
     private void Update()
     {
         UnboxingProgressSlider.value = unboxingProgress;
-        if(unboxingProgress >= 80 && unboxing)
+        if (UnboxingProgressSlider != null)
         {
-            Destroy(CollisionObj);
-            Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 1), transform.rotation);
-            UnboxingProgressSlider.gameObject.SetActive(false);
-            unboxing = false;
+            if (unboxingProgress >= 80 && unboxing)
+            {
+                Destroy(CollisionObj);
+                Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 1), transform.rotation);
+                UnboxingProgressSlider.gameObject.SetActive(false);
+                unboxing = false;
+            }
         }
         Jump();
         if (!unboxing)
