@@ -46,12 +46,14 @@ public class Player : MonoBehaviour
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
             Rb.AddForce(Vector2.right * 80);
             MoveKey = true;
+            SendMessage("Flip");
         }
         else if(MoveKey == true && Input.GetKeyDown(KeyCode.J))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
             Rb.AddForce(Vector2.right * 80);
             MoveKey = false;
+            SendMessage("Flip");
         }
     }
     void Jump()
