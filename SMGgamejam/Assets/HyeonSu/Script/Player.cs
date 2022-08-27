@@ -119,14 +119,14 @@ public class Player : MonoBehaviour
     }
     void Move()
     {
-        if (MoveKey == false && Input.GetKeyDown(KeyCode.F))
+        if (MoveKey == false && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.LeftArrow)))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
             Rb.AddForce(Vector2.right * moveSpeed);
             MoveKey = true;
             SendMessage("Flip", SendMessageOptions.DontRequireReceiver);
         }
-        else if (MoveKey == true && Input.GetKeyDown(KeyCode.J))
+        else if (MoveKey == true && (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             Rb.velocity = new Vector2(0f, Rb.velocity.y);
             Rb.AddForce(Vector2.right * moveSpeed);
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     }
     void Unboxing()
     {
-        if (unboxingKey == false && Input.GetKeyDown(KeyCode.F))
+        if (unboxingKey == false && (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.LeftArrow)))
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = true;
@@ -154,7 +154,7 @@ public class Player : MonoBehaviour
                 SoundManager.Instance.PlayBoxOpening();
             }
         }
-        else if (unboxingKey == true && Input.GetKeyDown(KeyCode.J))
+        else if (unboxingKey == true && (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.RightArrow)))
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = false;
