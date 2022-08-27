@@ -148,13 +148,21 @@ public class Player : MonoBehaviour
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = true;
-            SoundManager.Instance.PlayBoxOpening();
+
+            if (boost == false)
+            {
+                SoundManager.Instance.PlayBoxOpening();
+            }
         }
         else if (unboxingKey == true && Input.GetKeyDown(KeyCode.J))
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = false;
-            SoundManager.Instance.PlayBoxOpening();
+
+            if (boost == false)
+            {
+                SoundManager.Instance.PlayBoxOpening();
+            }
         }
     }
     public void ItemEffect(int ItemCase)
