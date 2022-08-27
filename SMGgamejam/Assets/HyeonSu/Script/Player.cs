@@ -26,13 +26,17 @@ public class Player : Singleton<Player>
     }
     private void Update()
     {
-        UnboxingProgressSlider.value = unboxingProgress;
-        if(unboxingProgress >= 80)
+        if (UnboxingProgressSlider != null)
         {
-            Destroy(CollisionObj);
-            UnboxingProgressSlider.gameObject.SetActive(false);
-            unboxing = false;
+            UnboxingProgressSlider.value = unboxingProgress;
+            if (unboxingProgress >= 80)
+            {
+                Destroy(CollisionObj);
+                UnboxingProgressSlider.gameObject.SetActive(false);
+                unboxing = false;
+            }
         }
+
         Jump();
         if (!unboxing)
             Move();
