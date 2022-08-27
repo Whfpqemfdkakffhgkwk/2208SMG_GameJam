@@ -103,9 +103,9 @@ public class GameManager : Singleton<GameManager>
     {
         Player player = Player.Instance;
         player.transform.DOMoveX(player.transform.position.x + 20, 1.5f).SetEase(Ease.Linear);
-        player.boost = true;
+        player.Boost = true;
         yield return new WaitForSeconds(1.5f);
-        player.boost = false;
+        player.Boost = false;
         Debug.Log("Off");
     }
 }

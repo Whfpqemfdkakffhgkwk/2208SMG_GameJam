@@ -21,13 +21,26 @@ public class Player : MonoBehaviour
     private int unboxingProgress;
     public int unboxingProgressSpeed = 2;
     #endregion
-    public bool boost;
+    bool boost;
+
+    public bool Boost
+    {
+        get => boost;
+        set
+        {
+            boost = value;
+            trail.gameObject.SetActive(value);
+        }
+    }
 
     [SerializeField] Slider UnboxingProgressSlider;
     [SerializeField] GameObject Item;
 
     [SerializeField]
     AudioMixer mixer;
+
+    [SerializeField]
+    GameObject trail;
     
     Rigidbody2D Rb;
     GameObject CollisionObj;
