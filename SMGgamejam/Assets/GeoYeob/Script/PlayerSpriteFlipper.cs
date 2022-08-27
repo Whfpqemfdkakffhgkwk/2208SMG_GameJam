@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerImageFlipper : MonoBehaviour
+public class PlayerSpriteFlipper : MonoBehaviour
 {
     int index;
     
@@ -13,9 +10,9 @@ public class PlayerImageFlipper : MonoBehaviour
     [SerializeField]
     SpriteRenderer targetRenderer;
 
-    void Awake()
+    void Start()
     {
-        
+        Flip();
     }
 
     public void Flip()
