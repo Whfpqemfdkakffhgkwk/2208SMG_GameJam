@@ -20,6 +20,12 @@ public class Splash : MonoBehaviour
     [SerializeField]
     SoundManager soundManager;
 
+    [SerializeField]
+    GameObject[] dummyList;
+
+    [SerializeField]
+    Transform dummyParent;
+
     bool ready;
 
     void Start()
@@ -68,5 +74,11 @@ public class Splash : MonoBehaviour
     public void SavePreferences()
     {
         PlayerPrefs.Save();
+    }
+
+    public void InstantiateSplashDummy()
+    {
+        Destroy(Instantiate(dummyList[Random.Range(0, dummyList.Length - 1)], dummyParent, false), 2);
+        Destroy(Instantiate(dummyList[Random.Range(0, dummyList.Length - 1)], dummyParent, false), 2);
     }
 }
