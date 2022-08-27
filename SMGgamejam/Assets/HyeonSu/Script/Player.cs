@@ -30,9 +30,9 @@ public class Player : MonoBehaviour
     }
     private void Update()
     {
-        UnboxingProgressSlider.value = unboxingProgress;
         if (UnboxingProgressSlider != null)
         {
+            UnboxingProgressSlider.value = unboxingProgress;
             if (unboxingProgress >= 80 && unboxing)
             {
                 Destroy(CollisionObj);
@@ -41,9 +41,11 @@ public class Player : MonoBehaviour
                 unboxing = false;
             }
         }
-        Jump();
         if (!unboxing)
+        {
             Move();
+            Jump();
+        }
         else
             Unboxing();
     }
