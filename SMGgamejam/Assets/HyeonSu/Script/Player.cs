@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class Player : MonoBehaviour
 {
     public static Player Instance { get; set; }
@@ -79,7 +80,11 @@ public class Player : MonoBehaviour
                 UnboxingProgressSlider.gameObject.SetActive(true);
                 CollisionObj = collision.gameObject;
                 break;
-
+            case "Hole":
+                Debug.Log("asd");
+                Rb.velocity = new Vector2(0, 0);
+                gameObject.transform.DOMoveY(transform.position.y - 5, 1);
+                break;
         }
     }
     void Move()
