@@ -184,22 +184,27 @@ public class Player : MonoBehaviour
         {
             case 1:
                 StartCoroutine(GameManager.Instance.SpeedUp());
+                SoundManager.Instance.PlayBuff();
                 Debug.Log(ItemCase);
                 break;
             case 2:
                 StartCoroutine(GameManager.Instance.SpeedDown());
+                SoundManager.Instance.PlayDebuff();
                 Debug.Log(ItemCase);
                 break;
             case 3:
                 StartCoroutine(GameManager.Instance.UnboxingSpeedUp());
+                SoundManager.Instance.PlayBuff();
                 Debug.Log(ItemCase);
                 break;
             case 4:
                 StartCoroutine(GameManager.Instance.UnboxingSpeedDown());
+                SoundManager.Instance.PlayDebuff();
                 Debug.Log(ItemCase);
                 break;
             case 5:
                 StartCoroutine(GameManager.Instance.BoostOn());
+                SoundManager.Instance.PlayBuff();
                 Debug.Log(ItemCase);
                 break;
         }

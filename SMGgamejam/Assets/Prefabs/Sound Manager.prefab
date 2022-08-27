@@ -51,4 +51,6 @@ MonoBehaviour:
   gameOver: {fileID: 8300000, guid: 730fba29b7b4449bf8884c1546ccdd01, type: 3}
   landmass: {fileID: 8300000, guid: e697517b010c541fbab977774e16a31f, type: 3}
   boost: {fileID: 8300000, guid: 4be1e4125c95c4bd29f6d3b95802ca6c, type: 3}
+  buff: {fileID: 8300000, guid: 9bf39482a3e614870b9fa10ca886a134, type: 3}
+  debuff: {fileID: 8300000, guid: be27bb46f7a82485ca649611cfba283c, type: 3}
   sfxSource: {fileID: 0}

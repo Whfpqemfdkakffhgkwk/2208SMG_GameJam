@@ -26,6 +26,12 @@ public class SoundManager : MonoBehaviour
     AudioClip boost;
 
     [SerializeField]
+    AudioClip buff;
+    
+    [SerializeField]
+    AudioClip debuff;
+
+    [SerializeField]
     AudioSource sfxSource;
 
     void Awake()
@@ -53,4 +59,10 @@ public class SoundManager : MonoBehaviour
     
     // 부스트 시작 시
     public void PlayBoost() => sfxSource.PlayOneShot(boost);
+    
+    // 버프 효과음
+    public void PlayBuff() => sfxSource.PlayOneShot(buff);
+    
+    // 디버프 효과음
+    public void PlayDebuff() => sfxSource.PlayOneShot(debuff);
 }
