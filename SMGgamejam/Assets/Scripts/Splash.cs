@@ -22,7 +22,7 @@ public class Splash : MonoBehaviour
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.75f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
-        bgmSource.Play(500);
+        bgmSource.PlayDelayed(0.5f);
     }
 
     public void StartGame()
