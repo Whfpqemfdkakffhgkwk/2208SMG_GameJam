@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,7 +21,7 @@ public class GameManager : Singleton<GameManager>
     {
         if (TimeText != null)
         {
-            TimeText.text = System.Math.Truncate(currentTime) + " / 120";
+            TimeText.text = "ì œí•œì‹œê°„: " + TimeSpan.FromSeconds(currentTime).ToString("mm':'ss") + " / 02:00";
         }
 
         currentTime += Time.deltaTime;
@@ -34,7 +35,7 @@ public class GameManager : Singleton<GameManager>
     public void GameOver()
     {
         Time.timeScale = 0;
-        Debug.Log("°ÔÀÓ¿À¹ö ¹Ì¿Ï¼º");
+        Debug.Log("ï¿½ï¿½ï¿½Ó¿ï¿½ï¿½ï¿½ ï¿½Ì¿Ï¼ï¿½");
     }
     public void GameClear()
     {
