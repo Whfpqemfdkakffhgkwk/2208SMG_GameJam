@@ -17,12 +17,19 @@ public class Splash : MonoBehaviour
     [SerializeField]
     AudioSource bgmSource;
 
+    [SerializeField]
+    SoundManager soundManager;
+
+    bool ready;
+
     void Start()
     {
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.75f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
         bgmSource.PlayDelayed(0.5f);
+
+        ready = true;
     }
 
     public void StartGame()
@@ -32,7 +39,13 @@ public class Splash : MonoBehaviour
 
     public void QuitGame()
     {
-        Application.Quit();
+        ConfirmPopup.Instance.Open("정말로 종료하시겠습니까?", () =>
+        {
+            Application.Quit();    
+        }, () =>
+        {
+            ConfirmPopup.Instance.Close();
+        });
     }
 
     public void OnBgmSliderChange(float v)
@@ -45,6 +58,11 @@ public class Splash : MonoBehaviour
     {
         mixer.SetFloat("SFXVolume", Mathf.Log10(v) * 20);
         PlayerPrefs.SetFloat("SFXVolume", v);
+
+        if (ready)
+        {
+            soundManager.PlayButtonClick();
+        }
     }
 
     public void SavePreferences()
