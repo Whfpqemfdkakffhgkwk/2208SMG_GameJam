@@ -1497,7 +1497,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 823990659}
         m_TargetAssemblyTypeName: Splash, Assembly-CSharp
-        m_MethodName: OnBgmSliderChange
+        m_MethodName: OnSfxSliderChange
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
