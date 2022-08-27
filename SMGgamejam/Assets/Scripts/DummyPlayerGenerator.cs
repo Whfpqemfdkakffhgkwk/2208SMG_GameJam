@@ -13,9 +13,9 @@ public class DummyPlayerGenerator : MonoBehaviour
     void Start()
     {
         var list = new List<Vector2>();
-        for (var i = 0; i < 500; i++)
+        for (var i = 0; i < 1000; i++)
         {
-            list.Add(new Vector2(Random.Range(-3100, -1100), Random.Range(-500, 500)));
+            list.Add(new Vector2(Random.Range(-5100, -1100), Random.Range(-500, 500)));
         }
         list = list.OrderByDescending(e => e.y).ToList();
         

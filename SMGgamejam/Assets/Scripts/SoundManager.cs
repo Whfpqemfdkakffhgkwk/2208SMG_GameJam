@@ -20,6 +20,9 @@ public class SoundManager : MonoBehaviour
     AudioClip gameOver;
 
     [SerializeField]
+    AudioClip landmass;
+
+    [SerializeField]
     AudioSource sfxSource;
 
     void Awake()
@@ -41,4 +44,7 @@ public class SoundManager : MonoBehaviour
     
     // 게임 오버 효과음
     public void PlayGameOver() => sfxSource.PlayOneShot(gameOver);
+    
+    // Splash에서 게임 시작 눌렀을 때 효과음
+    public void PlayLandmass() => sfxSource.PlayOneShot(landmass);
 }

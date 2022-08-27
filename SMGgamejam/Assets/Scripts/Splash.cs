@@ -49,6 +49,8 @@ public class Splash : MonoBehaviour
 
     public void StartGame()
     {
+        SoundManager.Instance.PlayLandmass();
+        
         canvasRootShaker.enabled = true;
         graphicRaycaster.enabled = false;
         dummyPlayerGenerator.EnableGroup();

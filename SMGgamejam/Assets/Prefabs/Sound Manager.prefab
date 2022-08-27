@@ -45,4 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonClick: {fileID: 8300000, guid: f08d2eb08c7650e49b57e46ad01d7003, type: 3}
+  boxOpening: {fileID: 8300000, guid: 79db2caa6ebff4db2968b95ac3fc86ed, type: 3}
+  boxOpened: {fileID: 8300000, guid: 49ccc63dbc28e4a898b62afc25bb8357, type: 3}
+  goalIn: {fileID: 8300000, guid: 3f0707a06c9624bf7af7123768212da9, type: 3}
+  gameOver: {fileID: 8300000, guid: 730fba29b7b4449bf8884c1546ccdd01, type: 3}
   sfxSource: {fileID: 0}

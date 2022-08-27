@@ -20,7 +20,7 @@ public class DummyPlayer : MonoBehaviour
         p.x += Time.deltaTime * 1500;
         rt.anchoredPosition = p;
 
-        if (p.x > 1000)
+        if (p.x > 2500)
         {
             Destroy(gameObject);
             
