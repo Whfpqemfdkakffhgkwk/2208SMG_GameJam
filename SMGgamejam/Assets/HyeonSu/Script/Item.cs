@@ -13,30 +13,4 @@ public class Item : MonoBehaviour
         ItemCase = Random.Range(1, 6);
         GetComponent<SpriteRenderer>().sprite = sprites[ItemCase - 1];
     }
-    public void ItemEffect()
-    {
-        switch(ItemCase)
-        {
-            case 1:
-                StartCoroutine(GameManager.Instance.SpeedUp());
-                Debug.Log(ItemCase);
-                break;
-            case 2:
-                StartCoroutine(GameManager.Instance.SpeedDown());
-                Debug.Log(ItemCase);
-                break;
-            case 3:
-                StartCoroutine(GameManager.Instance.UnboxingSpeedUp());
-                Debug.Log(ItemCase);
-                break;
-            case 4:
-                StartCoroutine(GameManager.Instance.UnboxingSpeedDown());
-                Debug.Log(ItemCase);
-                break;
-            case 5:
-                //StartCoroutine(SpeedUp());
-                Debug.Log(ItemCase);
-                break;
-        }
-    }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Goal
   - Item
   - Box
+  - Hole
   layers:
   - Default
   - TransparentFX

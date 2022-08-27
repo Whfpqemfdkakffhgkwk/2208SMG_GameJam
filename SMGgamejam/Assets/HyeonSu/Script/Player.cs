@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     private int unboxingProgress;
     public int unboxingProgressSpeed = 2;
     #endregion
+    public bool boost;
 
     [SerializeField] Slider UnboxingProgressSlider;
     [SerializeField] GameObject Item;
@@ -33,16 +34,9 @@ public class Player : MonoBehaviour
     {
         if (UnboxingProgressSlider != null)
         {
-            UnboxingProgressSlider.value = unboxingProgress;
-            if (unboxingProgress >= 80 && unboxing)
-            {
-                Destroy(CollisionObj);
-                Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 1), transform.rotation);
-                UnboxingProgressSlider.gameObject.SetActive(false);
-                unboxing = false;
-            }
+            UnboxingSliderUpdate();
         }
-        if (!unboxing)
+        if (!unboxing && !boost)
         {
             Move();
             Jump();
@@ -71,20 +65,36 @@ public class Player : MonoBehaviour
                 GameManager.Instance.GameClear();
                 break;
             case "Item":
-                collision.gameObject.GetComponent<Item>().ItemEffect();
+                ItemEffect(collision.gameObject.GetComponent<Item>().ItemCase);
                 Destroy(collision.gameObject);
                 break;
             case "Box":
-                unboxingProgress = 0;
-                unboxing = true;
-                UnboxingProgressSlider.gameObject.SetActive(true);
-                CollisionObj = collision.gameObject;
+                if (!boost)
+                {
+                    unboxingProgress = 0;
+                    unboxing = true;
+                    UnboxingProgressSlider.gameObject.SetActive(true);
+                    CollisionObj = collision.gameObject;
+                }
                 break;
             case "Hole":
-                Debug.Log("asd");
-                Rb.velocity = new Vector2(0, 0);
-                gameObject.transform.DOMoveY(transform.position.y - 5, 1);
+                if (!boost)
+                {
+                    Rb.velocity = new Vector2(0, 0);
+                    gameObject.transform.DOMoveY(transform.position.y - 5, 1);
+                }
                 break;
+        }
+    }
+    void UnboxingSliderUpdate()
+    {
+        UnboxingProgressSlider.value = unboxingProgress;
+        if (unboxingProgress >= 80 && unboxing)
+        {
+            Destroy(CollisionObj);
+            Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 1), transform.rotation);
+            UnboxingProgressSlider.gameObject.SetActive(false);
+            unboxing = false;
         }
     }
     void Move()
@@ -123,6 +133,32 @@ public class Player : MonoBehaviour
         {
             unboxingProgress += unboxingProgressSpeed;
             unboxingKey = false;
+        }
+    }
+    public void ItemEffect(int ItemCase)
+    {
+        switch (ItemCase)
+        {
+            case 1:
+                StartCoroutine(GameManager.Instance.SpeedUp());
+                Debug.Log(ItemCase);
+                break;
+            case 2:
+                StartCoroutine(GameManager.Instance.SpeedDown());
+                Debug.Log(ItemCase);
+                break;
+            case 3:
+                StartCoroutine(GameManager.Instance.UnboxingSpeedUp());
+                Debug.Log(ItemCase);
+                break;
+            case 4:
+                StartCoroutine(GameManager.Instance.UnboxingSpeedDown());
+                Debug.Log(ItemCase);
+                break;
+            case 5:
+                StartCoroutine(GameManager.Instance.BoostOn());
+                Debug.Log(ItemCase);
+                break;
         }
     }
 }

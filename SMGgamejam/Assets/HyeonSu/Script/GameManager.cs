@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] Text TimeText;
@@ -67,5 +68,15 @@ public class GameManager : Singleton<GameManager>
         Player.Instance.unboxingProgressSpeed = 1;
         yield return new WaitForSeconds(15);
         Player.Instance.moveSpeed = 2;
+    }
+
+    public IEnumerator BoostOn()
+    {
+        Player player = Player.Instance;
+        player.transform.DOMoveX(player.transform.position.x + 20, 1.5f).SetEase(Ease.Linear);
+        player.boost = true;
+        yield return new WaitForSeconds(1.5f);
+        player.boost = false;
+        Debug.Log("Off");
     }
 }
