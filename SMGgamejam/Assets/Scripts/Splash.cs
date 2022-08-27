@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class Splash : MonoBehaviour
 {
@@ -61,6 +63,8 @@ public class Splash : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("Nickname");
         }
+        
+        PlayerPrefs.SetString("GUID", PlayerPrefs.GetString("GUID", Guid.NewGuid().ToString()));
         
         PlayerPrefs.SetString("Nickname", PlayerPrefs.GetString("Nickname", NicknameGenerator.New));
 
