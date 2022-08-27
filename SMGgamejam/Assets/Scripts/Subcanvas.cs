@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Subcanvas : MonoBehaviour
 {
     [SerializeField]
     CanvasGroup canvasGroup;
+
+    [SerializeField]
+    Image image;
 
     [SerializeField]
     Animator animator;
@@ -13,23 +17,33 @@ public class Subcanvas : MonoBehaviour
 
     public void Open()
     {
+        var imageColor = image.color;
+        imageColor.a = 0.5f;
+        image.color = imageColor;
+        
         canvasGroup.alpha = 1;
         canvasGroup.blocksRaycasts = true;
 
         if (animator != null)
         {
-            animator.SetTrigger(OpenHash);
+            animator.Play("Popup Opening");
         }
+        
+        
     }
 
     public void Close()
     {
-        canvasGroup.alpha = 0;
+        //canvasGroup.alpha = 0;
+        var imageColor = image.color;
+        imageColor.a = 0.0f;
+        image.color = imageColor;
+        
         canvasGroup.blocksRaycasts = false;
 
         if (animator != null)
         {
-            animator.SetTrigger(CloseHash);
+            animator.Play("Popup Closing");
         }
     }
 }
