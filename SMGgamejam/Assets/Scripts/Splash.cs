@@ -32,6 +32,9 @@ public class Splash : MonoBehaviour
     [SerializeField]
     GraphicRaycaster graphicRaycaster;
 
+    [SerializeField]
+    CanvasRootShaker canvasRootShaker;
+
     bool ready;
 
     void Start()
@@ -46,6 +49,7 @@ public class Splash : MonoBehaviour
 
     public void StartGame()
     {
+        canvasRootShaker.enabled = true;
         graphicRaycaster.enabled = false;
         dummyPlayerGenerator.EnableGroup();
     }
