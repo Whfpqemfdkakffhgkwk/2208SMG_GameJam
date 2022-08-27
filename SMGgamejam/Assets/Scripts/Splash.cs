@@ -34,10 +34,15 @@ public class Splash : MonoBehaviour
     [SerializeField]
     CanvasRootShaker canvasRootShaker;
 
+    [SerializeField]
+    Text nicknameText;
+
     bool ready;
 
     void Start()
     {
+        RefreshNickname(false);
+
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
@@ -48,6 +53,24 @@ public class Splash : MonoBehaviour
         bgmSource.PlayDelayed(0.5f);
 
         ready = true;
+    }
+
+    public void RefreshNickname(bool force)
+    {
+        if (force)
+        {
+            PlayerPrefs.DeleteKey("Nickname");
+        }
+        
+        PlayerPrefs.SetString("Nickname", PlayerPrefs.GetString("Nickname", NicknameGenerator.New));
+
+        var nickname = PlayerPrefs.GetString("Nickname");
+
+        Debug.Log($"Nickname: {nickname}");
+
+        nicknameText.text = nickname;
+        
+        PlayerPrefs.Save();
     }
 
     public void StartGame()
