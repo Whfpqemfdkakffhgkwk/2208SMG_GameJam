@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Splash.unity
     guid: 5bfe8053721f9421483a981a7d743e22
   - enabled: 1
+    path: Assets/Scenes/Running.unity
+    guid: d14fe1a63b8c1467dae98d712ec07491
+  - enabled: 1
     path: Assets/HyeonSu/Scene/HyeonTest.unity
     guid: a125791d6f76fdf47b01dbd03fc177a8
   m_configObjects: {}
