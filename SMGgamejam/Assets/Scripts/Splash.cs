@@ -7,7 +7,7 @@ public class Splash : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Running");
+        SceneManager.LoadScene("HyeonTest");
     }
 
     public void QuitGame()
