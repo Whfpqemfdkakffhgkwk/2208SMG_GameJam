@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    //1 ÀÌ¼ÓÁõ°¡, 2 ÀÌ¼Ó°¨¼Ò, 3 °³ºÀ¼ÓµµÁõ°¡, 4 °³ºÀ¼Óµµ°¨¼Ò, 5 ºÎ½ºÆ®
     public int ItemCase;
 
     [SerializeField] private Sprite[] sprites;
@@ -21,19 +18,19 @@ public class Item : MonoBehaviour
         switch(ItemCase)
         {
             case 1:
-                text.text = "ÀÌµ¿ ¼Óµµ »ó½Â";
+                text.text = "ì´ë™ ì†ë„ ìƒìŠ¹";
                 break;
             case 2:
-                text.text = "ÀÌµ¿ ¼Óµµ ÀúÇÏ";
+                text.text = "ì´ë™ ì†ë„ ì €í•˜";
                 break;
             case 3:
-                text.text = "»óÀÚ °³ºÀ ¼Óµµ Áõ°¡";
+                text.text = "ìƒì ê°œë´‰ ì†ë„ ì¦ê°€";
                 break;
             case 4:
-                text.text = "»óÀÚ °³ºÀ ¼Óµµ ÀúÇÏ";
+                text.text = "ìƒì ê°œë´‰ ì†ë„ ì €í•˜";
                 break;
             case 5:
-                text.text = "ºÎ½ºÆ®";
+                text.text = "ë¶€ìŠ¤íŠ¸";
                 break;
         }
     }
