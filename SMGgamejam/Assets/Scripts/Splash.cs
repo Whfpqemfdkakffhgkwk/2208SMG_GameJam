@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Splash : MonoBehaviour
@@ -39,7 +38,7 @@ public class Splash : MonoBehaviour
 
     void Start()
     {
-        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.75f);
+        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
         bgmSource.PlayDelayed(0.5f);
