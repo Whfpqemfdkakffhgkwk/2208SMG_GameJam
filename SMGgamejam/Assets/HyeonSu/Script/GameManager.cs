@@ -40,4 +40,32 @@ public class GameManager : Singleton<GameManager>
         Instantiate(ClearWindow, UIObj.transform);
         Time.timeScale = 0;
     }
+
+
+
+
+    public IEnumerator SpeedUp()
+    {
+        Player.Instance.moveSpeed = 120;
+        yield return new WaitForSeconds(10);
+        Player.Instance.moveSpeed = 80;
+    }
+    public IEnumerator SpeedDown()
+    {
+        Player.Instance.moveSpeed = 30;
+        yield return new WaitForSeconds(10);
+        Player.Instance.moveSpeed = 80;
+    }
+    public IEnumerator UnboxingSpeedUp()
+    {
+        Player.Instance.unboxingProgressSpeed = 3;
+        yield return new WaitForSeconds(15);
+        Player.Instance.moveSpeed = 2;
+    }
+    public IEnumerator UnboxingSpeedDown()
+    {
+        Player.Instance.unboxingProgressSpeed = 1;
+        yield return new WaitForSeconds(15);
+        Player.Instance.moveSpeed = 2;
+    }
 }

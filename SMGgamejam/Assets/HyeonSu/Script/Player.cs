@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Player : Singleton<Player>
+public class Player : MonoBehaviour
 {
+    public static Player Instance { get; set; }  
+
     #region 이동관련
     private bool MoveKey; //F - false, J - True
     private bool JumpLimit;
@@ -17,26 +19,25 @@ public class Player : Singleton<Player>
     #endregion
 
     [SerializeField] Slider UnboxingProgressSlider;
+    [SerializeField] GameObject Item;
     Rigidbody2D Rb;
     GameObject CollisionObj;
     private void Awake()
     {
         //PlayerPrefs.SetFloat("BestRecord", 130); 
+        Instance = this;
         Rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        if (UnboxingProgressSlider != null)
+        UnboxingProgressSlider.value = unboxingProgress;
+        if(unboxingProgress >= 80 && unboxing)
         {
-            UnboxingProgressSlider.value = unboxingProgress;
-            if (unboxingProgress >= 80)
-            {
-                Destroy(CollisionObj);
-                UnboxingProgressSlider.gameObject.SetActive(false);
-                unboxing = false;
-            }
+            Destroy(CollisionObj);
+            Instantiate(Item, new Vector2(transform.position.x + 2, transform.position.y + 1), transform.rotation);
+            UnboxingProgressSlider.gameObject.SetActive(false);
+            unboxing = false;
         }
-
         Jump();
         if (!unboxing)
             Move();
@@ -64,6 +65,8 @@ public class Player : Singleton<Player>
                 GameManager.Instance.GameClear();
                 break;
             case "Item":
+                collision.gameObject.GetComponent<Item>().ItemEffect();
+                Destroy(collision.gameObject);
                 break;
             case "Box":
                 unboxingProgress = 0;
