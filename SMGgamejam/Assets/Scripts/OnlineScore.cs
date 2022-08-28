@@ -27,7 +27,7 @@ public class OnlineScore : MonoBehaviour
     
     IEnumerator Start()
     {
-        Splash.RefreshNickname(false);
+        Splash.RefreshNicknameStatic(false);
             
         var runtimeGuid = PlayerPrefs.GetString("GUID", Guid.NewGuid().ToString());
         while (Application.isPlaying)
@@ -48,7 +48,7 @@ public class OnlineScore : MonoBehaviour
         uwr.SetRequestHeader("X-User-Nickname",
             Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(PlayerPrefs.GetString("Nickname"))));
         uwr.SetRequestHeader("X-User-Score", Score.ToString());
-        //Debug.Log($"Score: {Score}, {url}");
+        //Debug.Log($"Score: {Score}, Nickname:{PlayerPrefs.GetString("Nickname")}, URL:{url}");
         yield return uwr.SendWebRequest();
         if (uwr.result == UnityWebRequest.Result.Success)
         {

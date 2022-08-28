@@ -44,8 +44,7 @@ public class Splash : MonoBehaviour
     void Start()
     {
         RefreshNickname(false);
-        nicknameText.text = RefreshNickname(false);
-
+        
         bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume", 0.20f);
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 0.75f);
 
@@ -58,23 +57,28 @@ public class Splash : MonoBehaviour
         ready = true;
     }
 
-    public static string RefreshNickname(bool force)
+    // 버튼 핸들러기때문에 static 불가
+    public void RefreshNickname(bool force)
+    {
+        nicknameText.text = RefreshNicknameStatic(force);
+    }
+
+    public static string RefreshNicknameStatic(bool force)
     {
         if (force)
         {
             PlayerPrefs.DeleteKey("Nickname");
         }
-        
+
         PlayerPrefs.SetString("GUID", PlayerPrefs.GetString("GUID", Guid.NewGuid().ToString()));
-        
+
         PlayerPrefs.SetString("Nickname", PlayerPrefs.GetString("Nickname", NicknameGenerator.New));
 
         var nickname = PlayerPrefs.GetString("Nickname");
 
         Debug.Log($"Nickname: {nickname}");
-        
-        PlayerPrefs.Save();
 
+        PlayerPrefs.Save();
         return nickname;
     }
 
